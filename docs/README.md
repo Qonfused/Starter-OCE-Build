@@ -22,7 +22,7 @@
 - [License](#%EF%B8%8F-license)
 
 ## ✨ Getting Started
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=521847844)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/Qonfused/Starter-OCE-Build)
 
 ### 1. Clone this repository using Git
 

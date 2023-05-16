@@ -1,0 +1,41 @@
+## @file
+# OCE-Build config.plist configuration file
+#
+# Copyright (c) 2023, Cory Bennett. All rights reserved.
+# SPDX-License-Identifier: BSD-3-Clause
+##
+
+# Refer to the below resources for more information on sensible defaults:
+# - https://dortania.github.io/OpenCore-Install-Guide/
+# - https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/Configuration.pdf
+#   (or https://dortania.github.io/docs/latest/Configuration.html)
+
+
+################################################################################
+
+'@ifdef': DEBUG
+
+# Debugging quirks (recommended with DEBUG version of OpenCore)
+# - https://dortania.github.io/OpenCore-Install-Guide/troubleshooting/debug.html
+# - https://dortania.github.io/OpenCore-Install-Guide/troubleshooting/kernel-debugging.html#config-plist-setup
+Kernel:
+  Quirks:
+    PanicNoKextDump:         Boolean | true
+    PowerTimeoutKernelPanic: Boolean | true
+Misc:
+  Debug:
+    AppleDebug:              Boolean | true
+    ApplePanic:              Boolean | true
+    DisableWatchDog:         Boolean | true
+    Target:                  Number  | 67
+NVRAM:
+  Add:
+    7C436110-AB2A-4BBB-A880-FE41995C9F82:
+      # Breakdown of used boot args:
+      # `-v`              (verbose mode)
+      # `debug=0x100`     (debug mask; disables watchdog to avoid panic reboot)
+      # `keepsyms=1`      (show panic log debug symbols)
+      # `msgbuf=1048576`  (Resizes kernel msg buffer to 1 MB; avoids truncation)
+      boot-args:            String  | "-v debug=0x100 keepsyms=1 msgbuf=1048576"
+
+'@endif':

@@ -1,0 +1,74 @@
+---
+oc-version: latest
+oc-build: DEBUG
+---
+include:
+  "*":
+  # This list includes miscellaneous files rooted in the EFI/OC/ directory.
+  - ".contentVisibility"
+  acpi:
+    # Decompiled .dsl SSDTs; supports filesystem paths only.
+    SSDT-AWAK: "ACPI/SSDT-AWAC.dsl"
+    SSDT-DGPU: "ACPI/SSDT-DGPU.dsl"
+    SSDT-EC-USBX: "ACPI/SSDT-EC-USBX.dsl"
+    SSDT-PLUG: "ACPI/SSDT-PLUG.dsl"
+    SSDT-PNLF: "ACPI/SSDT-PNLF.dsl"
+    SSDT-SBUS-MCHC: "ACPI/SSDT-SBUS-MCHC.dsl"
+  drivers:
+  # EFI drivers pulled from OpenCorePkg and OCBinaryData.
+  - AudioDxe
+  - HfsPlus
+  - OpenCanopy
+  - OpenRuntime
+  - ResetNvramEntry
+  kexts:
+    # These are Kernel Extensions (Kexts) injected by OpenCore when booting macOS.
+    #
+    # There are a few ways of specifying where and how OCE-Build pulls kexts.
+    # - The 'latest' specifier uses the latest build from Acidanthera kexts.
+    #   e.g.  Lilu:
+    #   ....   specifier: latest
+    #   -or-  Lilu: latest
+    # - Bundled kexts can be used with the wildcard '*' specifier.
+    #   e.g.  VirtualSMC: latest
+    #   ....  SMCBatteryManager: "*"
+    #   ....  SMCProcessor: "*"
+    #   ....  SMCSuperIO: "*"
+    #   e.g.  VoodooI2C/VoodooI2CServices: "*"
+    #   ....  VoodooI2C/VoodooGPIO: "*"
+    #   ....  VoodooI2C/VoodooInput: "*"
+    #   ....  VoodooI2C: VoodooI2C/VoodooI2C=latest
+    # - Additional properties like `MaxKernel` and `MinKernel` can be used with
+    #   OpenCore to control kext injection for specific macOS versions:
+    #   e.g.  BlueToolFixup:
+    #   ....   specifier: acidanthera/BrcmPatchRAM=latest
+    #   ....   MinKernel: "21.0.0"   # Monterey and newer
+    #   ....  IntelBluetoothFirmware: OpenIntelWireless/IntelBluetoothFirmware=latest
+    #   ....  IntelBluetoothInjector:
+    #   ....   specifier: "*"
+    #   ....   MaxKernel: "20.99.99" # Big Sur and earlier
+    # - You can use <user>/<repository>=<version> to fetch from GitHub releases:
+    #   e.g.  AirportItlwm-Ventura:
+    #   ....   specifier: OpenIntelWireless/itlwm=^2.2.0
+    #   ....   MaxKernel: "22.99.99"
+    #   ....   MinKernel: "22.0.0"
+    #   ....  AirportItlwm-Monterey:
+    #   ....   specifier: OpenIntelWireless/itlwm=^2.1.0
+    #   ....   MaxKernel: "21.99.99"
+    #   ....   MinKernel: "21.0.0"
+    #   -or-  AsusSMC: Qonfused/AsusSMC=latest
+    # - Local kexts can be specified by using a valid filesystem path:
+    #   e.g.  USBToolBox: USBToolbox/kext=latest
+    #   ....  UTBMap: "./Kexts/UTBMap.kext"
+    #   -or-  USBMap: "Kexts/UTBMap.kext"
+    Lilu: latest
+    WhateverGreen: latest
+    AppleALC: latest
+    VirtualSMC: latest
+  tools:
+  # EFI tools pulled from OpenCorePkg and OCBinaryData.
+  - OpenShell
+exclude:
+  "*":
+  # This list excludes miscellaneous files rooted in the EFI/OC/ directory.
+  - ".contentFlavour"

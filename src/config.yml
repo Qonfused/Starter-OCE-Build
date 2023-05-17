@@ -12,6 +12,25 @@
 
 
 ################################################################################
+#                             Misc. Cosmetic fixes                             #
+################################################################################
+
+# Use default GoldenGate theme with OpenCanopy.
+# - https://dortania.github.io/OpenCore-Post-Install/cosmetic/gui.html
+Misc:
+  Boot:
+    PickerMode:                       String  | "External"
+    PickerVariant:                    String  | "Acidanthera\GoldenGate"
+
+# Changes default macOS installer/keyboard language to English.
+# - You can find a list of supported languages below (convert HEX -> ASCI):
+#   https://github.com/acidanthera/OpenCorePkg/blob/master/Utilities/AppleKeyboardLayouts/AppleKeyboardLayouts.txt
+NVRAM:
+  Add:
+    7C436110-AB2A-4BBB-A880-FE41995C9F82:
+      prev-lang:kbd:                  String  | "en-US:0"
+
+################################################################################
 
 '@ifdef': DEBUG
 

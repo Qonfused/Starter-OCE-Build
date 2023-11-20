@@ -13,6 +13,9 @@
 
 </div>
 
+> [!NOTE]
+> This template is for an archived version of OCE-Build pre-dating its v1.0.0 rewrite. An archived version of the project is available [here](https://github.com/Qonfused/OCE-Build/tree/v0-frozen).
+
 ## ⚡Quick Links
 
 - [Getting Started](#-getting-started)
